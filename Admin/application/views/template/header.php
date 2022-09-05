@@ -58,6 +58,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.css" rel="stylesheet" type="text/css">
  <link href="http://www.jqueryscript.net/demo/Sliding-Growl-Notification-Plugin-For-jQuery-jsnotify/dist/css/notify.css" rel="stylesheet"/>
  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+ <script src="<?php echo base_url();?>assets/js/swal.min.js"></script>
+ <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/swal.min.css">
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -106,7 +108,7 @@ desired effect
               <!--<i class="fa fa-envelope-o"></i>-->
               <span class="label label-success"></span>
             </a>
-            
+
           <li class="dropdown user user-menu">
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -158,3 +160,8 @@ desired effect
       </div>
     </nav>
   </header>
+  <?php
+  if($this->session->flashdata('message')!=NULL){
+    echo '<script>swal("'.$this->session->flashdata('message').'", "", "'.$this->session->flashdata('type').'");</script>';
+  }
+  ?>

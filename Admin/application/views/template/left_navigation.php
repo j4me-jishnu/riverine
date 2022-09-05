@@ -23,15 +23,18 @@
       <li class="<?php if ($this->uri->segment(1) == "viewGallery") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>viewGallery"><i class="fa fa-cube"></i> <span>Gallery</span></a></li>
 <!-- ########################################################################################################### -->
       <li class="treeview <?php
-      if($this->uri->segment(1)=="Rooms")
+      if($this->uri->segment(2)=="RoomDetails")
       {echo "active";}
-      elseif($this->uri->segment(1)=="#")
+      elseif($this->uri->segment(2)=="showRoomAvailability")
+      {echo "active";}
+      elseif($this->uri->segment(2)=="showBookings")
       {echo "active";}
       ?>">
       <a><i class="fa fa-hotel"></i><span>Rooms & Reservations</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
       <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(1)=="Rooms"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms"><i class="fa fa-circle-o"></i> <span>Rooms</span></a></li>
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-circle-o"></i> <span>Room Availability</span></a></li>
+         <li class="<?php if($this->uri->segment(1)=="RoomDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/RoomDetails"><i class="fa fa-circle-o"></i> <span>Rooms</span></a></li>
+         <li class="<?php if($this->uri->segment(2)=="showRoomAvailability"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/showRoomAvailability"><i class="fa fa-circle-o"></i> <span>Availability</span></a></li>
+         <li class="<?php if($this->uri->segment(2)=="showBookings"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/showBookings"><i class="fa fa-circle-o"></i> <span>Booking</span></a></li>
       </ul>
 
       <li class="treeview <?php
