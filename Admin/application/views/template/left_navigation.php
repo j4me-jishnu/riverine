@@ -32,7 +32,7 @@
       ?>">
       <a><i class="fa fa-hotel"></i><span>Rooms & Reservations</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
       <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(1)=="RoomDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/RoomDetails"><i class="fa fa-circle-o"></i> <span>Rooms</span></a></li>
+         <li class="<?php if($this->uri->segment(2)=="RoomDetails"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/RoomDetails"><i class="fa fa-circle-o"></i> <span>Rooms</span></a></li>
          <li class="<?php if($this->uri->segment(2)=="showRoomAvailability"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/showRoomAvailability"><i class="fa fa-circle-o"></i> <span>Availability</span></a></li>
          <li class="<?php if($this->uri->segment(2)=="showBookings"){echo "active";}?>" ><a  href="<?php echo base_url();?>Rooms/showBookings"><i class="fa fa-circle-o"></i> <span>Booking</span></a></li>
       </ul>
@@ -57,7 +57,8 @@
       ?>">
       <a><i class="fa fa-superpowers"></i><span>Offers Available</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
       <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>HomeText"><i class="fa fa-user-circle-o"></i> <span>#</span></a></li>
+         <li class="<?php if($this->uri->segment(2)=="showOffersPage"){echo "active";}?>" ><a  href="<?php echo base_url();?>Offers/showOffersPage"><i class="fa fa-user-circle-o"></i> <span>Offers Management</span></a></li>
+
          <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
       </ul>
    </li>
@@ -97,6 +98,7 @@
          <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
       </ul>
    </li>
+   <li class="<?php if ($this->uri->segment(2) == "showBookingInterface") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Booking/showBookingInterface"><i class="fa fa-cube"></i> <span>Booking Interface</span></a></li>
 
 
 

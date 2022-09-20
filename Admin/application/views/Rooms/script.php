@@ -17,14 +17,14 @@ $(document).ready(function() {
       });
     },
     "columns": [
-      { "data": "status", "orderable": false },
+      { "data": "created_at", "orderable": false },
       { "data": "cat_name", "orderable": false },
       { "data": null, render:function(data){
         return "<button class='btn btn-xs btn-primary' type='button'>Edit</button>&nbsp;<button class='btn btn-xs btn-danger' type='button'>Delete</button>";
       }},
     ]
   });
-  $table = $('#roomsTable').DataTable({
+  $table1 = $('#roomsTable').DataTable({
     "processing": true,
     "serverSide": false,
     "bDestroy": true,
@@ -35,15 +35,17 @@ $(document).ready(function() {
       }
     },
     "createdRow": function(row, data, index) {
-      $table.column(0).nodes().each(function(node, index, dt) {
-        $table.cell(node).data(index + 1);
+      $table1.column(0).nodes().each(function(node, index, dt) {
+        $table1.cell(node).data(index + 1);
       });
     },
     "columns": [
-      { "data": "room_status", "orderable": false },
+      { "data": "created_at", "orderable": false },
       { "data": "room_name", "orderable": false },
-      { "data": "room_price", "orderable": false },
-      { "data": "cat_name", "orderable": false },
+      { "data": "room_adult_price", "orderable": false },
+      { "data": "room_below_five_price", "orderable": false },
+      { "data": "room_above_five_price", "orderable": false },
+      { "data": "room_extra_bed_price", "orderable": false },
       { "data": "room_status", render:function(data){
         if(data==0){
           return "<strong style='color:red;'>Not Available</strong>";

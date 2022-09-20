@@ -1,7 +1,13 @@
+
+
+
+
+
+
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
-      Room Bookings
+      New Booking
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo base_url(); ?>Dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -20,111 +26,137 @@
             <h2 class="box-title"></h2>
           </div>
         </div>
-        <div class="box-body table-responsive">
-          <button type="button" name="button" onclick="showBookingModal()" class="btn btn-primary">Add Booking</button>
-          <table id="gallery_table" class="table table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>SINO</th>
-                <th>Booking ID</th>
-                <th>Guest Name</th>
-                <th>Mobile</th>
-                <th>POI Type</th>
-                <th>File</th>
-                <th>Nationality</th>
-                <th>Property Name</th>
-                <th>Alloted Room</th>
-                <th>Check-In</th>
-                <th>Check-Out</th>
-                <th>Payment Status</th>
-                <th>Booking Status</th>
-                <th><center>Action</center></th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
+
+
+
+
+
+
+        <div class="box-body">
+          <form class="" action="<?php echo base_url(); ?>Rooms/addRoomCategory" method="post">
+            <div class="row">
+              <div class="col-md-4">
+                <label for="">Booking ID</label>
+                <input type="text" name="booking_code" id="booking_code" value="" class="form-control" placeholder="Enter room category name" readonly required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Guest Name</label>
+                <input type="text" name="name" id="name" value="" class="form-control" required>
+              </div>
+
+
+
+
+              <div class="col-md-4">
+                <label for="">Mobile</label>
+                <input type="number" name="mobile" id="mobile" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">POI Type</label>
+                <select class="form-control" name="poi_type" id="poi_type">
+                  <?php foreach ($pois as $item): ?>
+                      <option value="<?php echo $item->poi_id; ?>"><?php echo $item->poi_name; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="">Nationality</label>
+                <select class="form-control" name="nationality" id="nationality" required>
+                  <option value="0">Indian</option>
+                  <option value="1">Foriegner</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="">Property</label>
+                <select class="form-control" name="property" id="property" required>
+                  <?php foreach ($properties as $item): ?>
+                    <option value="<?php echo $item->prop_id; ?>"><?php echo $item->prop_name; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="">Choose Room From Avalable Rooms</label>
+                <select class="form-control" name="room" id="room" required>
+                  <?php foreach ($available_rooms as $room): ?>
+                    <option value="<?php echo $room->room_id; ?>"><?php echo $room->room_name; ?></option>
+                  <?php endforeach; ?>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label for="">Check-In</label>
+                <input type="datetime-local" name="check_in" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Check-Out</label>
+                <input type="datetime-local" name="check_out" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Number of Adults</label>
+                <input type="number" name="adults_count" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Number of Children</label>
+                <input type="number" name="children_count" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Extra Bed Count</label>
+                <input type="number" name="children_count" value="" class="form-control" required>
+              </div>
+            </div>
+
+            <hr>
+            <div class="col-md-12">
+              <h4>Add Personal Details</h4>
+            </div>
+            <div class="col-md-1">
+              <label for=""></label>
+            </div>
+            <div class="col-md-1">
+              <label for="">Guest Name</label>
+            </div>
+            <div class="col-md-2">
+              <label for="">Mobile</label>
+            </div>
+            <div class="col-md-2">
+              <label for="">Address</label>
+            </div>
+            <div class="col-md-2">
+              <label for="">POI Type</label>
+            </div>
+            <div class="col-md-2">
+              <label for="">Document Number</label>
+            </div>
+            <div class="col-md-2">
+              <label for="">Nationality</label>
+            </div>
+
+            <!-- ########## -->
+            <div class="row">
+              <input type="hidden" name="counter" id="counter" value="0">
+            </div>
+            <DIV id="service" class="box-body no-padding">
+            </div>
+            <i class="fa fa-fw fa-plus-square fa-2x" onClick="addMore();" Style="color:green;"></i>
+            <i class="fa fa-fw fa-minus-square pull-right fa-2x" onClick="deleteRow();" style="color:red;"></i>
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success" >Confirm</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </form>
         </div>
+
+
+
+
+
+
+
+
       </div>
     </div>
   </section>
-</div>
-
-
-<div id="addBookingModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">New Booking</h4>
-      </div>
-      <div class="modal-body">
-        <form class="" action="<?php echo base_url(); ?>Rooms/addRoomCategory" method="post">
-          <div class="row">
-            <div class="col-md-6">
-              <label for="">Booking ID</label>
-              <input type="text" name="booking_code" id="booking_code" value="" class="form-control" placeholder="Enter room category name" readonly required>
-            </div>
-            <div class="col-md-6">
-              <label for="">Guest Name</label>
-              <input type="text" name="name" id="name" value="" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label for="">Mobile</label>
-              <input type="number" name="mobile" id="mobile" value="" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label for="">POI Type</label>
-              <select class="form-control" name="poi_type" id="poi_type">
-                <?php foreach ($pois as $item): ?>
-                    <option value="<?php echo $item->poi_id; ?>"><?php echo $item->poi_name; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="">Nationality</label>
-              <select class="form-control" name="nationality" id="nationality" required>
-                <option value="0">Indian</option>
-                <option value="1">Foriegner</option>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="">Property</label>
-              <select class="form-control" name="property" id="property" required>
-                <?php foreach ($properties as $item): ?>
-                  <option value="<?php echo $item->prop_id; ?>"><?php echo $item->prop_name; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="">Choose Room From Avalable Rooms</label>
-              <select class="form-control" name="room" id="room" required>
-                <?php foreach ($available_rooms as $room): ?>
-                  <option value="<?php echo $room->room_id; ?>"><?php echo $room->room_name; ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-            <div class="col-md-6">
-              <label for="">Check-In</label>
-              <input type="datetime-local" name="check_in" value="" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label for="">Check-Out</label>
-              <input type="datetime-local" name="check_out" value="" class="form-control" required>
-            </div>
-            <div class="col-md-6">
-              <label for="">Rent Amount</label>
-              <input type="number" step="0.01" name="total_price" class="form-control" value="" required>
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success" >Confirm</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </form>
-    </div>
-
-  </div>
 </div>

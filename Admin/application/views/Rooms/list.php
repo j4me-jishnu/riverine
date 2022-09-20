@@ -77,8 +77,10 @@
                         <tr>
                           <th>SINO</th>
                           <th>Room Name</th>
-                          <th>Price</th>
-                          <th>Category</th>
+                          <th>Adult Price</th>
+                          <th>Below 5 Children</th>
+                          <th>Above 5 Children</th>
+                          <th>Extra Bed</th>
                           <th>Status</th>
                           <th>Action</th>
                           <th>Last updated</th>
@@ -151,8 +153,20 @@
             </select>
           </div>
           <div class="col-md-6">
-            <label for="">Price</label>
-            <input type="number" step="0.01" name="room_price" value="" class="form-control" required>
+            <label for="">Adult Price</label>
+            <input type="number" step="0.01" name="room_adult_price" value="" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="">Children Below 5 Price</label>
+            <input type="number" step="0.01" name="below5_price" value="" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="">Children Above 5 Price</label>
+            <input type="number" step="0.01" name="above5_price" value="" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label for="">Extra Bed Price</label>
+            <input type="number" step="0.01" name="extra_bed_price" value="" class="form-control" required>
           </div>
           <div class="col-md-6">
             <label for="">Status</label>
@@ -164,7 +178,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" >Save</button>
+        <button type="submit" class="btn btn-success">Save</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </form>

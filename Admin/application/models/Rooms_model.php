@@ -1,7 +1,7 @@
 <?php
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Rooms_model extends CI_Model{
-    
+
     public function __construct(){
         parent::__construct();
     }
@@ -39,5 +39,12 @@ class Rooms_model extends CI_Model{
         $query=$this->db->select('*')->where('room_status',1)->get('tbl_rooms');
         return $query->num_rows()>0?$query->result():false;
     }
+
+    public function get_single_room_price_details(){
+      $query=$this->db->select('room_id,room_below_five_price, room_above_five_price, room_extra_bed_price, room_adult_price')->get('tbl_rooms');
+      return $query->result();
+    }
+
+    
 
 }

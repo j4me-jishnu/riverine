@@ -35,15 +35,15 @@ class Rooms extends MY_Controller
         if($result){
             $this->session->set_flashdata('message',"Room Category Added Successfully!");
             $this->session->set_flashdata('type',"success");
-            redirect("Rooms", 'refresh');
+            redirect("/Rooms/RoomDetails", 'refresh');
         }
         else{
             $this->session->set_flashdata('message',"Something went wrong! Failed to add category!");
             $this->session->set_flashdata('type',"error");
-            redirect("Rooms", 'refresh');
+            redirect("/Rooms/RoomDetails", 'refresh');
         }
     }
-    
+
     public function getRoomCategories(){
         $this->result=$this->Rooms_model->get_all_room_categories();
     }
@@ -56,7 +56,10 @@ class Rooms extends MY_Controller
         $insert_array=[
             'room_name'=>$_POST['room_name'],
             'room_cat_id'=>$_POST['room_cat'],
-            'room_price'=>$_POST['room_price'],
+            'room_adult_price'=>$_POST['room_adult_price'],
+            'room_below_five_price'=>$_POST['below5_price'],
+            'room_above_five_price'=>$_POST['above5_price'],
+            'room_extra_bed_price'=>$_POST['extra_bed_price'],
             'room_status'=>$_POST['room_status'],
             'created_at'=>date('Y-m-d H:i:s'),
         ];
@@ -64,12 +67,12 @@ class Rooms extends MY_Controller
         if($result){
             $this->session->set_flashdata('message',"Room Added Successfully!");
             $this->session->set_flashdata('type',"success");
-            redirect("Rooms", 'refresh');
+            redirect("/Rooms/RoomDetails", 'refresh');
         }
         else{
             $this->session->set_flashdata('message',"Something went wrong! Failed to add room!");
             $this->session->set_flashdata('type',"error");
-            redirect("Rooms", 'refresh');
+            redirect("/Rooms/RoomDetails", 'refresh');
         }
     }
 
@@ -84,6 +87,12 @@ class Rooms extends MY_Controller
         $template['pois']=$this->Rooms_model->get_poi_list();
         $template['available_rooms']=$this->Rooms_model->get_available_rooms();
         $template['body']='RoomBookings/list';
+        $template['script']='RoomBookings/script';
+        $this->load->view('template',$template);
+    }
+
+    public function showAddBoookingPage(){
+        $template['body']='RoomBookings/add';
         $template['script']='RoomBookings/script';
         $this->load->view('template',$template);
     }
