@@ -1,9 +1,4 @@
 
-
-
-
-
-
 <div class="content-wrapper">
   <section class="content-header">
     <h1>
@@ -26,45 +21,12 @@
             <h2 class="box-title"></h2>
           </div>
         </div>
-
-
-
-
-
-
         <div class="box-body">
-          <form class="" action="<?php echo base_url(); ?>Rooms/addRoomCategory" method="post">
+          <form class="" action="<?php echo base_url(); ?>Booking/addRoomBooking" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-4">
                 <label for="">Booking ID</label>
-                <input type="text" name="booking_code" id="booking_code" value="" class="form-control" placeholder="Enter room category name" readonly required>
-              </div>
-              <div class="col-md-4">
-                <label for="">Guest Name</label>
-                <input type="text" name="name" id="name" value="" class="form-control" required>
-              </div>
-
-
-
-
-              <div class="col-md-4">
-                <label for="">Mobile</label>
-                <input type="number" name="mobile" id="mobile" value="" class="form-control" required>
-              </div>
-              <div class="col-md-4">
-                <label for="">POI Type</label>
-                <select class="form-control" name="poi_type" id="poi_type">
-                  <?php foreach ($pois as $item): ?>
-                      <option value="<?php echo $item->poi_id; ?>"><?php echo $item->poi_name; ?></option>
-                  <?php endforeach; ?>
-                </select>
-              </div>
-              <div class="col-md-4">
-                <label for="">Nationality</label>
-                <select class="form-control" name="nationality" id="nationality" required>
-                  <option value="0">Indian</option>
-                  <option value="1">Foriegner</option>
-                </select>
+                <input type="text" name="booking_code" id="booking_code" value="<?php echo $booking_number; ?>" class="form-control" placeholder="Enter room category name" readonly required>
               </div>
               <div class="col-md-4">
                 <label for="">Property</label>
@@ -74,36 +36,54 @@
                   <?php endforeach; ?>
                 </select>
               </div>
-              <div class="col-md-4">
+              <!-- <div class="col-md-4">
                 <label for="">Choose Room From Avalable Rooms</label>
                 <select class="form-control" name="room" id="room" required>
                   <?php foreach ($available_rooms as $room): ?>
                     <option value="<?php echo $room->room_id; ?>"><?php echo $room->room_name; ?></option>
                   <?php endforeach; ?>
                 </select>
-              </div>
+              </div> -->
               <div class="col-md-4">
                 <label for="">Check-In</label>
-                <input type="datetime-local" name="check_in" value="" class="form-control" required>
+                <input type="datetime-local" name="check_in" value="<?php echo date('Y-m-d')." 13:00:00"; ?>" class="form-control" required>
               </div>
               <div class="col-md-4">
                 <label for="">Check-Out</label>
-                <input type="datetime-local" name="check_out" value="" class="form-control" required>
+                <input type="datetime-local" name="check_out" value="<?php $datetime = new DateTime('tomorrow'); echo $datetime->format('Y-m-d')." 11:00:00"; ?>" class="form-control" required>
               </div>
               <div class="col-md-4">
                 <label for="">Number of Adults</label>
                 <input type="number" name="adults_count" value="" class="form-control" required>
               </div>
               <div class="col-md-4">
-                <label for="">Number of Children</label>
-                <input type="number" name="children_count" value="" class="form-control" required>
+                <label for="">Number of Children Below 5</label>
+                <input type="number" name="children_count_below_5" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Number of Children Above 5</label>
+                <input type="number" name="children_count_above_5" value="" class="form-control" required>
               </div>
               <div class="col-md-4">
                 <label for="">Extra Bed Count</label>
-                <input type="number" name="children_count" value="" class="form-control" required>
+                <input type="number" name="extra_bed_count" value="" class="form-control" required>
+              </div>
+              <div class="col-md-4">
+                <label for="">Identity Documents</label>
+                <input type="file" name="files[]" multiple="" value="" class="form-control" required>
               </div>
             </div>
-
+            <div class="row">
+              <hr>
+              <div class="col-md-6">
+                <h4><u>Select from available rooms</u></h4>
+                <?php foreach ($available_rooms as $room): ?>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <label for=""><?php echo $room->room_name; ?></label>
+                  <input type="checkbox" name="rooms[]" value="<?php echo $room->room_id; ?>">
+                <?php endforeach; ?>
+              </div>
+            </div>
             <hr>
             <div class="col-md-12">
               <h4>Add Personal Details</h4>
@@ -111,7 +91,7 @@
             <div class="col-md-1">
               <label for=""></label>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
               <label for="">Guest Name</label>
             </div>
             <div class="col-md-2">
@@ -120,16 +100,15 @@
             <div class="col-md-2">
               <label for="">Address</label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <label for="">POI Type</label>
             </div>
             <div class="col-md-2">
               <label for="">Document Number</label>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-1">
               <label for="">Nationality</label>
             </div>
-
             <!-- ########## -->
             <div class="row">
               <input type="hidden" name="counter" id="counter" value="0">
@@ -138,9 +117,6 @@
             </div>
             <i class="fa fa-fw fa-plus-square fa-2x" onClick="addMore();" Style="color:green;"></i>
             <i class="fa fa-fw fa-minus-square pull-right fa-2x" onClick="deleteRow();" style="color:red;"></i>
-
-
-
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-success" >Confirm</button>
@@ -148,13 +124,6 @@
           </div>
         </form>
         </div>
-
-
-
-
-
-
-
 
       </div>
     </div>

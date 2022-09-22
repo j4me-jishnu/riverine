@@ -24,13 +24,18 @@
           </div>
         </div>
         <div class="box-body table-responsive">
-          <table id="gallery_table" class="table table-bordered table-striped">
+          <table id="offers_table" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>Room</th>
-                <th>IMAGE</th>
-                <th>DATE</th>
-                <th><center>EDIT/DELETE</center></th>
+                <th>Sl No</th>
+                <th>OFFER NAME</th>
+                <th>OFFER DESCRIPTION</th>
+                <th>ROOM CATEGORY</th>
+                <th>START</th>
+                <th>ENDS</th>
+                <th>STATUS</th>
+                <th><center>CREATED AT</center></th>
+                <th><center>ACTION</center></th>
               </tr>
             </thead>
             <tbody>
@@ -54,27 +59,35 @@
       <div class="modal-body">
         <form class="" action="<?php echo base_url(); ?>Offers/addOffer" method="post">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-8">
             <label for="">Offer Name</label>
-            <input type="text" name="cat_name" value="" class="form-control" placeholder="Enter room category name" required>
+            <input type="text" name="offer_name" value="" class="form-control" placeholder="Enter offer name" required>
           </div>
-          <div class="col-md-6">
-            <label for="">Description</label>
-            <input type="text" name="cat_name" value="" class="form-control" placeholder="Enter room category name" required>
-          </div>
-          <div class="col-md-6">
-            <label for="">Select Room</label>
-            <select class="form-control" name="room_id" id="roomSelect">
+          <div class="col-md-12">
+            <label for="">Offer Description</label>
+            <textarea id="story" name="offer_desc" rows="5" cols="33" class="form-control" required></textarea>
+        </div>
+          <div class="col-md-8">
+            <label for="">Select Room Category</label>
+            <select class="form-control" name="category_id" id="categorySelect" required>
               <option value="" selected>Choose</option>
-              <?php foreach ($room_list as $room): ?>
-                <option value="<?php echo $room->room_id; ?>"><?php echo $room->room_name; ?></option>
+              <?php foreach ($category_list as $category): ?>
+                <option value="<?php echo $category->cat_id; ?>"><?php echo $category->cat_name; ?></option>
               <?php endforeach; ?>
             </select>
+          </div>
+          <div class="col-md-6">
+            <label for="">Start on</label>
+            <input type="date" class="form-control" name="offer_start" value="" required>
+          </div>
+          <div class="col-md-6">
+            <label for="">Ending at</label>
+            <input type="date" class="form-control" name="offer_end" value="" required>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-success" >Save</button>
+        <button type="submit" class="btn btn-success" >Proceed</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </form>

@@ -63,8 +63,43 @@ class Rooms extends MY_Controller
             'room_status'=>$_POST['room_status'],
             'created_at'=>date('Y-m-d H:i:s'),
         ];
-        $result=$this->General_model->add('tbl_rooms',$insert_array);
-        if($result){
+        $result_id=$this->Rooms_model->insert_get_last_id($insert_array,'tbl_rooms');
+
+          $count = count($_FILES['files']['name']);
+          // echo $count;
+          // var_dump($_FILES);
+          // var_dump($_POST); die;
+
+          for($i=0;$i<$count;$i++){
+          if(!empty($_FILES['files']['name'][$i])){
+            $_FILES['file']['name'] = $_FILES['files']['name'][$i];
+            $_FILES['file']['type'] = $_FILES['files']['type'][$i];
+            $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+            $_FILES['file']['error'] = $_FILES['files']['error'][$i];
+            $_FILES['file']['size'] = $_FILES['files']['size'][$i];
+            $config['upload_path'] = 'Images/Rooms/';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '5000';
+            $config['file_name'] = $_FILES['files']['name'][$i];
+            $this->load->library('upload',$config);
+            if($this->upload->do_upload('file')){
+              $uploadData = $this->upload->data();
+              $filename = $uploadData['file_name'];
+              $data=[
+                  'room_id'=>$result_id,
+                  'room_image'=>$filename,
+                  'created_at'=>date('Y-m-d H:i:s'),
+              ];
+              $result=$this->General_model->add('tbl_room_images',$data);
+            }
+            else{
+                echo "<script>alert(".$this->$this->upload->display_errors().")</script>";
+                $result=false;
+            }
+          }
+        }
+
+        if($result_id && $result){
             $this->session->set_flashdata('message',"Room Added Successfully!");
             $this->session->set_flashdata('type',"success");
             redirect("/Rooms/RoomDetails", 'refresh');
@@ -83,6 +118,7 @@ class Rooms extends MY_Controller
     }
 
     public function showBookings(){
+        $template['booking_number']=$this->getBookingId();
         $template['properties']=$this->Rooms_model->get_property_list();
         $template['pois']=$this->Rooms_model->get_poi_list();
         $template['available_rooms']=$this->Rooms_model->get_available_rooms();
@@ -115,7 +151,7 @@ class Rooms extends MY_Controller
     public function getBookingId(){
         $lastId=$this->Rooms_model->get_last_booking_id();
         $invoice_num=$this->invoice_num($lastId+1,7,'RSB-');
-        echo json_encode($invoice_num);
+        return $invoice_num;
     }
 
     public function getProperties(){
@@ -124,6 +160,13 @@ class Rooms extends MY_Controller
 
     public function getAvailableRooms(){
         $this->result=$this->Rooms_model->get_available_rooms();
+    }
+
+    public function listNationalities(){
+        $this->result=$this->Rooms_model->get_nationalities();
+    }
+    public function listPOIs(){
+        $this->result=$this->Rooms_model->get_pois();
     }
 
     public function __destruct(){

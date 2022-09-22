@@ -1,11 +1,11 @@
 <script>
 $(document).ready(function() {
-  $table = $('#gallery_table').DataTable({
+  $table = $('#offers_table').DataTable({
     "processing": true,
     "serverSide": true,
     "bDestroy": true,
     "ajax": {
-      "url": "<?php echo base_url(); ?>getNearby",
+      "url": "<?php echo base_url(); ?>Offers/getOffers",
       "type": "POST",
       "data": function(d) {
       }
@@ -16,24 +16,25 @@ $(document).ready(function() {
       });
     },
     "columns": [
-      {
-        "data": "nearby_status",
-        "orderable": false
-      },
-      {
-        "data": "nearby_img",
-        "render": function(data,row,meta){
-          return '<img src="<?php echo base_url() ?>uploads/nearby/'+data+'" height="70px;" width="70px;">'
-        }
-      },
-      {
-        "data": "nearby_date",
-        "orderable": false
-      },
-      {
-        "data": "nearby_id",
-        "orderable": false
-      }
+      {"data": "updated_at","orderable": false},
+      {"data": null,render:function(data,type,row){
+        return "<strong style='color:green;'>"+data['offer_name']+"</strong>";
+      }},
+      {"data": "offer_desc","orderable": false},
+      {"data": null, render:function(data,type,row){
+        return "<strong style='color:#A52A2A;'>"+data['cat_name']+"</strong>";
+      }},
+      {"data": "offer_start","orderable": false},
+      {"data": "offer_end","orderable": false},
+      {"data": null,render:function(data,type,row){
+        return data['offer_status']==1 ? "<strong style='color:green;'>Active</strong>" : "<strong style='color:red;'>Inactive</strong>";
+      }},
+      {"data": null,render:function(data){
+        return "<center>"+data['created_at']+"</center>";
+      }},
+      {"data": null,  render:function(data,type,row){
+        return "<center><div><i class='fa fa-pencil-square-o' aria-hidden='true'></i> &nbsp;&nbsp;&nbsp; <i class='fa fa-trash-o' aria-hidden='true'></div></center>";
+      }},
     ]
   });
 });

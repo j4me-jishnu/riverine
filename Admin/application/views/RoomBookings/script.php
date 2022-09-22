@@ -75,10 +75,41 @@ function showBookingModal(){
 function addMore(){
   var count=$('#counter').val();
   var counter = parseFloat(count) + 1;
-  
-  var htmlVal='<DIV class="product-item box box-info id="list_'+counter+'"><div class="row"><div class="col-md-1"><br><input type="checkbox" name="item_index[]"/></div><div class="col-md-3"><br><input name="item_list_id[]" class="form-control" data-pms-required="true" data-pms-type="dropDown" type="text" placeholder="Item Name"  id="item_'+counter+'" autofocus /></div><div class="col-md-2"><br><input name="qty[]" class="form-control" data-pms-required="true" data-pms-type="dropDown"  id="qty_'+counter+'" placeholder="Quantity" autofocus /></div><div class="col-md-2"><br><select name="unit_id[]" class="form-control select2" data-pms-required="true" data-pms-type="dropDown"  id="unit_id'+counter+'" autofocus /></select></div><div class="col-md-2"><br><input type="text" name="rate[]" onkeyup="getSum('+counter+')" class="form-control" id="rate_'+counter+'" placeholder="Rate"></div><div class="col-md-2"><br><input type="text" name="total[]" class="form-control" id="total_'+counter+'" placeholder="Total"></div>';
+
+  $.ajax({
+    url:"<?php echo base_url();?>Rooms/listNationalities",
+    type:'POST',
+    dataType:"json",
+    success:function(data){
+      var html = '<option>Select</option>';
+      var code = '';
+      var i;
+      for(i=0; i<data.length; i++){
+        html += '<option value='+data[i].id+'>'+data[i].nationality_name+'</option>';
+      }
+      $('#nationality_'+counter+'').html(html);
+    }
+  });
+  $.ajax({
+    url:"<?php echo base_url();?>Rooms/listPOIs",
+    type:'POST',
+    dataType:"json",
+    success:function(data){
+      var html = '<option>Select</option>';
+      var code = '';
+      var i;
+      for(i=0; i<data.length; i++){
+        html += '<option value='+data[i].poi_id+'>'+data[i].poi_name+'</option>';
+      }
+      $('#poi_type_'+counter+'').html(html);
+    }
+  });
+
+  var htmlVal='<DIV class="product-item box box-info id="list_'+counter+'"><div class="row"><div class="col-md-1"><br><input type="checkbox" name="item_index[]"/></div><div class="col-md-2"><br><input name="guest_name[]" class="form-control" data-pms-required="true" data-pms-type="dropDown" type="text" placeholder="Guest name"  id="guest_name_'+counter+'" autofocus /></div><div class="col-md-2"><br><input name="mobile[]" class="form-control" data-pms-required="true" data-pms-type="dropDown"  id="mobile_'+counter+'" placeholder="Mobile" autofocus /></div><div class="col-md-2"><br><input name="address[]" class="form-control" data-pms-required="true" data-pms-type="dropDown"  id="address_'+counter+'" placeholder="Address" autofocus /></div><div class="col-md-1"><br><select name="poi_type[]" class="form-control select2" data-pms-required="true" data-pms-type="dropDown"  id="poi_type_'+counter+'" autofocus /></select></div><div class="col-md-2"><br><input type="text" name="document_no[]" class="form-control" placeholder="Document No." id="document_no_'+counter+'" autofocus ></div><div class="col-md-1"><br><select name="nationality[]" class="form-control select2" data-pms-required="true" data-pms-type="dropDown"  id="nationality_'+counter+'" autofocus/></select></div>';
   $("#service").append(htmlVal);
   $('#counter').val(counter);
+
+  // <div class="col-md-2"><br><input name="address[]" class="form-control" data-pms-required="true" data-pms-type="dropDown"  id="address_'+counter+'" placeholder="Address" autofocus /></div>
 }
 
 function deleteRow() {

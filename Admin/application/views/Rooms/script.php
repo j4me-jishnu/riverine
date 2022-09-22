@@ -42,6 +42,7 @@ $(document).ready(function() {
     "columns": [
       { "data": "created_at", "orderable": false },
       { "data": "room_name", "orderable": false },
+      { "data": "image_count", "orderable": false },
       { "data": "room_adult_price", "orderable": false },
       { "data": "room_below_five_price", "orderable": false },
       { "data": "room_above_five_price", "orderable": false },

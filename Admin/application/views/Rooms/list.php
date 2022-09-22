@@ -7,18 +7,8 @@
       <li class="active">Room Details</li>
     </ol>
   </section>
-
   <!-- Main content -->
-
-
-
-
-
-
-
   <section class="content">
-
-
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"><b>Room Categories</b></a>
@@ -27,7 +17,6 @@
         <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"><b>Rooms</b></a>
       </li>
     </ul>
-
     <div class="tab-content">
       <div class="tab-pane active" id="tabs-1" role="tabpanel">
         <div class="row">
@@ -37,7 +26,6 @@
               <div class="col-md-8">
                 <h2 class="box-title"></h2>
               </div>
-
             </div>
             <div class="box-body table-responsive">
               <button type="button" name="button" class="btn btn-primary" onclick="showCategoryModal()">Add Room Category</button>
@@ -56,7 +44,6 @@
           </div>
         </div>
       </div>
-
       <div class="tab-pane" id="tabs-2" role="tabpanel">
         <div class="tab-pane active" id="tabs-1" role="tabpanel">
           <div class="tab-content">
@@ -68,7 +55,6 @@
                     <div class="col-md-8">
                       <h2 class="box-title"></h2>
                     </div>
-
                   </div>
                   <div class="box-body table-responsive">
                     <button type="button" name="button" class="btn btn-primary" onclick="showAddRoomModal()">Add Room</button>
@@ -77,6 +63,7 @@
                         <tr>
                           <th>SINO</th>
                           <th>Room Name</th>
+                          <th>Images Count</th>
                           <th>Adult Price</th>
                           <th>Below 5 Children</th>
                           <th>Above 5 Children</th>
@@ -96,14 +83,8 @@
         </div>
       </div>
     </div>
-
-
   </section>
-
-
-
 </div>
-
 <div id="showCategoryModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -127,11 +108,8 @@
       </div>
     </form>
     </div>
-
   </div>
 </div>
-
-
 <div id="showAddRoomModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -141,7 +119,7 @@
         <h4 class="modal-title">Add Room</h4>
       </div>
       <div class="modal-body">
-        <form class="" action="<?php echo base_url(); ?>Rooms/addRoom" method="post">
+        <form class="" action="<?php echo base_url(); ?>Rooms/addRoom" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-6">
             <label for="">Room Name/No</label>
@@ -175,6 +153,11 @@
               <option value="1">Available</option>
             </select>
           </div>
+          <div class="col-md-6">
+            <label for="">Room Images (Maximum 5 Images)</label>
+            <!-- <input type="number" step="0.01" name="extra_bed_price" value="" class="form-control" required> -->
+            <input type='file' class="form-control" name='files[]' multiple=""><br/><br/>
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -183,6 +166,5 @@
       </div>
     </form>
     </div>
-
   </div>
 </div>

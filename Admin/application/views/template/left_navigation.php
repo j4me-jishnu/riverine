@@ -50,42 +50,21 @@
       </ul>
    </li>
       <li class="treeview <?php
-      if($this->uri->segment(1)=="#")
+      if($this->uri->segment(2)=="showOffersPage")
       {echo "active";}
       elseif($this->uri->segment(1)=="#")
       {echo "active";}
       ?>">
-      <a><i class="fa fa-superpowers"></i><span>Offers Available</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
+      <a><i class="fa fa-superpowers"></i><span>Offers</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
       <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(2)=="showOffersPage"){echo "active";}?>" ><a  href="<?php echo base_url();?>Offers/showOffersPage"><i class="fa fa-user-circle-o"></i> <span>Offers Management</span></a></li>
+         <li class="<?php if($this->uri->segment(2)=="showOffersPage"){echo "active";}?>" ><a  href="<?php echo base_url();?>Offers/showOffersPage"><i class="fa fa-circle-o"></i> <span>Manage Offers</span></a></li>
+      </ul>
+   </li>
 
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
-      </ul>
-   </li>
-      <li class="treeview <?php
-      if($this->uri->segment(1)=="#")
-      {echo "active";}
-      elseif($this->uri->segment(1)=="#")
-      {echo "active";}
-      ?>">
-      <a><i class="fa fa-question-circle"></i><span>FAQ</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
-      <ul class="treeview-menu">
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>HomeText"><i class="fa fa-user-circle-o"></i> <span>#</span></a></li>
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
-      </ul>
-   </li>
-      <li class="treeview <?php
-      if($this->uri->segment(1)=="#")
-      {echo "active";}
-      elseif($this->uri->segment(1)=="#")
-      {echo "active";}
-      ?>">
-      <a><i class="fa fa-calendar"></i><span>Events Management & QR</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
-      <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>HomeText"><i class="fa fa-user-circle-o"></i> <span>#</span></a></li>
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
-      </ul>
-   </li>
+   <li class="<?php if ($this->uri->segment(1) == "FAQ") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>FAQ/showFAQPage"><i class="fa fa-question-circle"></i> <span>FAQ</span></a></li>
+
+   <li class="<?php if ($this->uri->segment(2) == "showEventsPage") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Events/showEventsPage"><i class="fa fa-calendar"></i> <span>Events Management</span></a></li>
+
       <li class="treeview <?php
       if($this->uri->segment(1)=="#")
       {echo "active";}
@@ -98,6 +77,7 @@
          <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
       </ul>
    </li>
+
    <li class="<?php if ($this->uri->segment(2) == "showBookingInterface") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Booking/showBookingInterface"><i class="fa fa-cube"></i> <span>Booking Interface</span></a></li>
 
 

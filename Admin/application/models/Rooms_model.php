@@ -13,7 +13,7 @@ class Rooms_model extends CI_Model{
     }
 
     public function get_all_rooms(){
-        $query=$this->db->select('*,date_format(tbl_rooms.updated_at,"%d/%m/%Y %T") as updated_at')
+        $query=$this->db->select('tbl_rooms.*,tbl_room_categories.*,date_format(tbl_rooms.updated_at,"%d/%m/%Y %T") as updated_at, (SELECT COUNT(room_id) FROM tbl_room_images WHERE tbl_rooms.room_id=tbl_room_images.room_id) as image_count')
         ->join('tbl_room_categories','tbl_room_categories.cat_id=tbl_rooms.room_cat_id','left')
         ->get('tbl_rooms');
         $result['data']=$query->result();
@@ -45,6 +45,21 @@ class Rooms_model extends CI_Model{
       return $query->result();
     }
 
-    
+    public function insert_get_last_id($insert_array,$table){
+        $this->db->insert($table, $insert_array);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+
+    public function get_nationalities(){
+      $query=$this->db->select('*')->get('tbl_nationality');
+      return $query->num_rows()>0?$query->result():false;
+    }
+
+    public function get_pois(){
+      $query=$this->db->select('*')->get('tbl_poi_types');
+      return $query->num_rows()>0?$query->result():false;
+    }
+
 
 }
