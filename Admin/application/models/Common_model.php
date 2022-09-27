@@ -78,10 +78,25 @@ class Common_model extends CI_Model{
     return $result;
   }
 
+  public function get_reviews(){
+    $query=$this->db->select('*,date_format(updated_at,"%d/%m/%Y") as updated_at,,date_format(updated_at,"%d/%m/%Y") as created_at')
+    ->get('tbl_user_reviews');
+    $result['data']=$query->result();
+    return $result;
+  }
+
   public function get_events(){
     $query=$this->db->select('*,date_format(tbl_events.updated_at,"%d/%m/%Y") as updated_at, (SELECT COUNT(id) FROM tbl_event_images WHERE tbl_event_images.event_id = tbl_events.event_id) as image_count')
     ->join('tbl_event_images','tbl_event_images.id=tbl_events.event_id','left')
     ->get('tbl_events');
+    $result['data']=$query->result();
+    return $result;
+  }
+
+  public function get_promocode(){
+    $query=$this->db->select('*,date_format(tbl_promocode.updated_at,"%d/%m/%Y") as updated_at')
+    ->join('tbl_room_categories','tbl_room_categories.cat_id=tbl_promocode.code_room_cat','left')
+    ->get('tbl_promocode');
     $result['data']=$query->result();
     return $result;
   }

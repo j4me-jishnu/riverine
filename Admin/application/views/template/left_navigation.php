@@ -38,18 +38,6 @@
       </ul>
 
       <li class="treeview <?php
-      if($this->uri->segment(1)=="#")
-      {echo "active";}
-      elseif($this->uri->segment(1)=="#")
-      {echo "active";}
-      ?>">
-      <a><i class="fa fa-star-half-o"></i><span>Guest Reviews & Ratings</span><span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span></a>
-      <ul class="treeview-menu ">
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>HomeText"><i class="fa fa-user-circle-o"></i> <span>#</span></a></li>
-         <li class="<?php if($this->uri->segment(1)=="#"){echo "active";}?>" ><a  href="<?php echo base_url();?>viewHomeDesc"><i class="fa fa-user-circle-o"></i> <span>R#</span></a></li>
-      </ul>
-   </li>
-      <li class="treeview <?php
       if($this->uri->segment(2)=="showOffersPage")
       {echo "active";}
       elseif($this->uri->segment(1)=="#")
@@ -64,6 +52,12 @@
    <li class="<?php if ($this->uri->segment(1) == "FAQ") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>FAQ/showFAQPage"><i class="fa fa-question-circle"></i> <span>FAQ</span></a></li>
 
    <li class="<?php if ($this->uri->segment(2) == "showEventsPage") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Events/showEventsPage"><i class="fa fa-calendar"></i> <span>Events Management</span></a></li>
+
+   <li class="<?php if ($this->uri->segment(2) == "showReviewsPage") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Reviews/showReviewsPage"><i class="fa fa-check-circle-o"></i> <span>Guest Reviews & Ratings</span></a></li>
+
+   <li class="<?php if ($this->uri->segment(2) == "showPromocodePage") { echo "active"; } ?>"><a href="<?php echo base_url(); ?>Promocode/showPromocodePage"><i class="fa fa-percent"></i> <span>Promo Code Management</span></a></li>
+
+
 
       <li class="treeview <?php
       if($this->uri->segment(1)=="#")
